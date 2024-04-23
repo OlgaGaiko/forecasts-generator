@@ -1,4 +1,7 @@
 const currentForecast = document.querySelector('.current-forecast');
+const currentForecastTitle = currentForecast.querySelector('h1');
+const currentForecastPercent = currentForecast.querySelector('p');
+const forecastTemplate = document.querySelector('#forecast-item');
 const forecastsList = document.querySelector('.forecasts');
 const button = document.querySelector('.forecast-btn');
 
@@ -9,28 +12,21 @@ const predictions = [
     { text: "Сегодня ты получишь неожиданный подарок", min: 60, max: 95 },
     { text: "Сегодня не твой день, попробуй завтра", min: 10, max: 50 }
 ];
-
-button.addEventListener('click', generatePrediction);
-
-const function generateRandomNumber(min, max) {
+function generateRandomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 };
+button.addEventListener('click', generatePrediction);
 
-const function generatePrediction() {
-    const randomPrediction = Math.floor(Math.random() * predictions.length);
-    const percent = generateRandomNumber(randomPrediction.min, randomPrediction.max);
-
-
-    const newForecastItem = document.createElement('div');
-    newForecastItem.classList.add('forecast-item');
-
-    newForecastItem.innerHTML = `<h3>${randomPrediction.text}</h3> <p>${percent}% вероятности</p>`;
-
-    currentForecast.querySelector('h1').textContent = randomPrediction.text;
-    currentForecast.querySelector('p').textContent = `${percent}% вероятности`;
-
-    forecastsList.insertBefore(newForecastItem, forecastsList.firstChild);
-
+function generatePrediction() {
+    const randomPrediction = generateRandomNumber(0, 5)
+    const probability = generateRandomNumber(0, 101);
+    const predictionText = predictions[randomPrediction].text;
+    currentForecastTitle.textContent = predictionText;
+    currentForecastPercent.textContent = `${probability}%`;
+    const forecastToAdd = forecastTemplate.content.cloneNode(true);
+    forecastToAdd.querySelector('h3').textContent = predictionText;
+    forecastToAdd.querySelector('p').textContent = probability;
+    forecastsList.prepend(forecastToAdd);
 };
 
 
