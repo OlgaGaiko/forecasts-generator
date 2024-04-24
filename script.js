@@ -6,11 +6,11 @@ const forecastsList = document.querySelector('.forecasts');
 const button = document.querySelector('.forecast-btn');
 
 const predictions = [
-    { text: "Сегодня ты встретишь свою вторую половинку", min: 70, max: 100 },
-    { text: "Тебя пригласят на свидание", min: 50, max: 90 },
-    { text: "Будь осторожен, возможны непредвиденные ситуации", min: 20, max: 60 },
-    { text: "Сегодня ты получишь неожиданный подарок", min: 60, max: 95 },
-    { text: "Сегодня не твой день, попробуй завтра", min: 10, max: 50 }
+    { text: "У тебя сегодня день рождения", min: 99, max: 100 },
+    { text: "Завтра ты увидишь свою вторую половинку", min: 90, max: 100 },
+    { text: "Тебя сегодня ждет неожиданный сюрприз", min: 70, max: 85 },
+    { text: "Ты сегодня классно проведешь свой день", min: 60, max: 80 },
+    { text: "Тебя завтра ждет горячая ночь!(18+)", min: 80, max: 90 }
 ];
 function generateRandomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -18,8 +18,8 @@ function generateRandomNumber(min, max) {
 button.addEventListener('click', generatePrediction);
 
 function generatePrediction() {
-    const randomPrediction = generateRandomNumber(0, 5)
-    const probability = generateRandomNumber(0, 101);
+    const randomPrediction = generateRandomNumber(0, 5);
+    const probability = generateRandomNumber(90, 101);
     const predictionText = predictions[randomPrediction].text;
     currentForecastTitle.textContent = predictionText;
     currentForecastPercent.textContent = `${probability}%`;

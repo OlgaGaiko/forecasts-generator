@@ -1,5 +1,11 @@
 body {
     font-family: 'Montserrat', sans-serif;
+    background-color: azure;
+}
+
+.sasha {
+    text-align: center;
+    color: #6627EB;
 }
 
 .forecast-btn {
